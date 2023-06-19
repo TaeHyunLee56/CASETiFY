@@ -267,7 +267,7 @@ customStrapInput.addEventListener('input', function() {
         priceTags.forEach(priceTag => {
             priceTag.innerHTML = `₩ ${price}`;
         })
-        priceFinTag.innerHTML = `₩ ${price}`;
+        priceFinTag.innerHTML = "₩ 0";
     }
 
 });
