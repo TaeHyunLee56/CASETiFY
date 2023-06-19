@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RE/CASETiFY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans', sans-serif;
+        }
+        :root{
+            --white: #ffffff;
+            --gray1: #333333;
+            --gray2: #666666;
+            --gray3: #999999;
+            --gray4: #c5c5c5;
+        }
+        body{
+            overflow-x: hidden
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100vw;
+            height: 96px;
+            padding: 0 40px;
+            z-index: +50;
+        }
+        .navbar{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+            width: 648px;
+            height: 48px;
+            border-radius: 24px;
+            padding: 0 78px;
+            background-color: var(--white);
+            border: 2px solid var(--gray3);
+        }
+        .navbar a{
+            text-decoration: none;
+            color: var(--gray3);
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s ease-in-out;
+        }
+        .navbar a:hover{
+            color: var(--gray1);
+        }
+        #currentnav{
+            color: var(--gray1);
+        }
+        .navlogo{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+        }
+        .navlogo li:not(:last-child){
+            margin-right: 12px;
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .header{
+            background-image: url(images/recasetify/header.png);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 720px;
+        }
+        .header-overlay{
+            color: var(--gray1);
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.7);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 0px;
+            overflow: hidden;
+            transition: all 2s ease;
+        }
+        .header-overlay h2{
+            opacity: 0;
+            transition: all 2s ease;
+            font-size: 8px;
+            line-height: 180%;
+            font-weight: 600;
+        }
+        .header-overlay.open{
+            width: 800px;
+        }
+        .header-overlay h2.open{
+            opacity: 1;
+            font-size: 60px;
+            line-height: 180%;
+            font-weight: 600;
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .sec1{
+            height: 600px;
+            background-color: #F9FAFB;
+            margin-bottom: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .sec1-text{
+            width: 896px;
+        }
+        .sec1 p{
+            display: inline;
+            font-size: 40px;
+            line-height: 180%;
+            font-weight: 600;
+            color: var(--gray4);
+            transition: all 0.3s ease-in-out;
+        }
+        .sec1 p.middle{
+            color: var(--gray1);
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .sec2-content{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 264px;
+            margin-bottom: 40px;
+        }
+        .sec2 .sec2-num{
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 180%;
+            color: #21A264;
+        }
+        .sec2 h2{
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 180%;
+            color: var(--gray1);
+        }
+        .sec2 .sec2-text{
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 180%;
+            color: var(--gray3);
+            margin-top: 20px;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+        }
+        .sec2-text1.scroll,.sec2-text2.scroll,.sec2-text3.scroll,.sec2-text4.scroll{
+            opacity: 1;
+        }
+        .sec2-img1,.sec2-img3{
+            transform: translateX(60px);
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+        }
+        .sec2-img1.scroll,.sec2-img3.scroll{
+            transform: translateX(0);
+            opacity: 1;
+        }
+        .sec2-img2,.sec2-img4{
+            transform: translateX(-60px);
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+        }
+        .sec2-img2.scroll,.sec2-img4.scroll{
+            transform: translateX(0);
+            opacity: 1;
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .sec3{
+            margin-top: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 120px;
+        }
+        .sec3 h2{
+            margin-bottom: 40px;
+        }
+        .sec3-items{
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+        }
+        .sec3-item{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .sec3-item-name{
+            margin-top: 16px;
+            margin-bottom: 4px;
+        }
+        .btn{
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 36px;
+            border: 1px solid #21A264;
+            color: #21A264;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 18px;
+            transition: all 0.3s ease-in-out;
+        }
+        .btn:hover{
+            background-color: #21A264;
+            color: var(--white);
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .sec4{
+            height: 800px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #video-container video {
+            width: 100%;
+        }
+        .sec4-overlay{
+            width: 100%;
+            height: 800px;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .sec4-overlay h2{
+            color: var(--white);
+            font-size: 48px;
+            line-height: 180%;
+            font-weight: 600;
+        }
+        .sec4-overlay .btn{
+            border: 1px solid var(--white);
+            color: var(--white);
+            transition: all 0.3s ease-in-out;
+        }
+        .sec4-overlay .btn:hover{
+            background-color: var(--white);
+            color: var(--gray1);
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .footer{
+            height: 320px;
+            background-color: var(--gray1);
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 0 56px;
+            padding-top: 40px;
+            color: var(--white);
+        }
+        .footer-content{
+            display: flex;
+            /* justify-content: space-between; */
+            width: 100%;
+            align-items: flex-end;
+            margin-top: auto;
+            margin-bottom: 40px;
+        }
+        .footer-follow{
+            flex-grow: 1;
+        }
+        .footer-follow p{
+            margin-bottom: 12px;
+        }
+        .footer-sns{
+            display: flex;
+            flex-direction: row;
+            gap: 24px;
+        }
+        .footer-about{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            flex-grow: 1;
+        }
+        .footer-about a{
+            color: var(--white);
+            text-decoration: none;
+            line-height: 180%;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a class="logo" href="index.html"><img src="images/logo.png" alt="#" height="60px"></a>
+        <ul class="navbar">
+            <li><a href="#">기종</a></li>
+            <li><a href="#">시그니쳐</a></li>
+            <li><a href="colab.html">Co-Lab</a></li>
+            <li><a href="custom.html">커스텀</a></li>
+            <li><a href="#">액세서리</a></li>
+            <li><a href="#">트렌딩</a></li>
+        </ul>
+        <ul class="navlogo">
+            <li><a href="#"><img src="images/nav-lan.png" alt="#" width="24px"></a></li>
+            <li><a href="#"><img src="images/nav-per.png" alt="#" width="24px"></a></li>
+            <li><a href="#"><img src="images/nav-cart.png" alt="#" width="24px"></a></li>
+            <li><a href="#"><img src="images/nav-search.png" alt="#" width="24px"></a></li>
+        </ul>
+    </div>
+
+    <div class="header">
+        <div class="header-overlay">
+            <h2>RE/CASTiFY<br>LET’S CLOSE THE LOOP<br>THE PLASTIC CRISIS</h2>
+        </div>
+    </div>
+
+    <div class="sec1">
+        <div class="sec1-text">
+            <p>전 세계적으로 매년 3억 8천만 톤의 플라스틱이 생산됩니다.</p>
+            <p>세상에서 가장 큰 포유류인 대왕고래 270만 마리와 맞먹는 무게이죠.</p>
+            <p>하지만 친환경 기술로 플라스틱 폐기물을 재사용/재활용함으로써</p>
+            <p>이 수치를 낮출 수 있는 미래를 그려봅니다.</p>
+        </div>
+    </div>
+
+    <div class="sec2">
+        <div class="sec2-content">
+            <div class="sec2-context">
+                <p class="sec2-num">01</p>
+                <h2>낡은 폰케이스를<br>케이스티파이에 반납합니다.</h2>
+                <p class="sec2-text sec2-text1">필요하지 않은 케이스를 기부 및 재활용하면서,<br>쓰레기를 줄이는 데 기여하실 수 있습니다.</p>
+            </div>
+            <img class="sec2-img1" src="images/recasetify/sec2-item1.png" alt="#" width="316px">
+        </div>
+        <div class="sec2-content">
+            <img class="sec2-img2" src="images/recasetify/sec2-item2.png" alt="#" width="316px">
+            <div class="sec2-context">
+                <p class="sec2-num">02</p>
+                <h2>공정이 시작됩니다.</h2>
+                <p class="sec2-text sec2-text2">낡은 폰케이스들은 수거되어 공장으로 보내지고,<br>작은 펠릿 조각들로 분쇄됩니다.</p>
+            </div>
+        </div>
+        <div class="sec2-content">
+            <div class="sec2-context">
+                <p class="sec2-num">03</p>
+                <h2>Re/CASETiFY™ 펠릿</h2>
+                <p class="sec2-text sec2-text3">
+                    작게 조각난 플라스틱 펠릿들은 하나로 섞여<br>
+                    Re/CASETiFY™ 펠릿(Pellet)으로 다시 태어납니다.<br>
+                    케이스티파이는 제품 포장에도 환경을 생각하는<br>
+                    재료만을 사용합니다.
+                </p>
+            </div>
+            <img class="sec2-img3" src="images/recasetify/sec2-item3.png" alt="#" width="316px">
+        </div>
+        <div class="sec2-content">
+            <img class="sec2-img4" src="images/recasetify/sec2-item4.png" alt="#" width="316px">
+            <div class="sec2-context">
+                <p class="sec2-num">04</p>
+                <h2>순환적인 미래</h2>
+                <p class="sec2-text sec2-text4">
+                    그리고 마침내 여러분의 테크 기기와 환경을 위한<br>
+                    Re/CASETiFY 제품이 탄생합니다.<br>
+                    더 오랫동안 튼튼하게 사용할 수 있는 케이스로요.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sec3">
+        <h2>순환적인 미래를 생각하는 제품을 만듭니다</h2>
+        <div class="sec3-items">
+            <div class="sec3-item">
+                <img src="images/recasetify/sec3-item1.png" alt="#" width="316px">
+                <p class="sec3-item-name">Save Earth Sticker</p>
+                <p>₩105000</p>
+            </div>
+            <div class="sec3-item">
+                <img src="images/recasetify/sec3-item2.png" alt="#" width="316px">
+                <p class="sec3-item-name">Black Kingsnake</p>
+                <p>₩105000</p>
+            </div>
+            <div class="sec3-item">
+                <img src="images/recasetify/sec3-item3.png" alt="#" width="316px">
+                <p class="sec3-item-name">SDolphin Heart - Ocean</p>
+                <p>₩105000</p>
+            </div>
+            <div class="sec3-item">
+                <img src="images/recasetify/sec3-item4.png" alt="#" width="316px">
+                <p class="sec3-item-name">Reset Check</p>
+                <p>₩105000</p>
+            </div>
+        </div>
+        <a class="btn" href="#">MORE</a>
+    </div>
+
+    <div class="sec4">
+        <video autoplay loop muted>
+            <source src="ReCasetifyArt.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="sec4-overlay">
+            <h2>RE/CASTiFY ART</h2>
+            <a class="btn" href="#">MORE</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="#"><img src="images/logo.png" alt="#" height="48px"></a>
+        <div class="footer-content">
+            <div class="footer-follow">
+                <p>Follow</p>
+                <div class="footer-sns">
+                    <a href="#"><img src="images/Facebook.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Twitter.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Instagram.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Tik Tok.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Pinterest.png" alt="#" width="24px"></a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>Copyright C 2023 CASETIFY  ㅣ  개인정보 처리방침  ㅣ  약관</p>
+            </div>
+            <div class="footer-about">
+                <a href="#">CASTiFY CLUB</a>
+                <a href="#">ABOUT CASETIFY</a>
+                <a href="#">문의하기</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="recasetify.js"></script>
+</body>
+</html>

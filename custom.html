@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASETiFY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">    
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans', sans-serif;
+            line-height: 160%;
+            /* overflow-x: hidden; */
+        }
+        body{
+            overflow-x: hidden;
+        }
+        :root{
+            --white: #ffffff;
+            --gray1: #333333;
+            --gray2: #666666;
+            --gray3: #999999;
+            --gray4: #c5c5c5;
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100vw;
+            height: 96px;
+            background-color: #f3f3f3;
+            padding: 0 40px;
+            position: fixed;
+            z-index: 50;
+        }
+        .navbar{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+            width: 648px;
+            height: 48px;
+            border-radius: 24px;
+            padding: 0 78px;
+            background-color: var(--white);
+        }
+        .navbar a{
+            text-decoration: none;
+            color: var(--gray3);
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s ease-in-out;
+        }
+        .navbar a:hover{
+            color: var(--gray1);
+        }
+        #currentnav{
+            color: var(--gray1);
+        }
+        .navlogo{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+        }
+        .navlogo li:not(:last-child){
+            margin-right: 12px;
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .sec{
+            height: 100vh;
+            padding-top: 96px;
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .sec1{
+            position: relative;
+        }
+        .sec1 h1{
+            width: 100%;
+            background-color: var(--gray1);
+            height: 460px;
+            position: absolute;
+            bottom: 0;
+            color: var(--white);
+            font-size: 64px;
+            font-weight: 600;
+            line-height: 180%;
+            padding: 32px 100vw;
+            transition: all 1.5s ease-in-out;
+        }
+        .sec1 h1.move{
+            padding: 32px 120px;
+        }
+        .sec1 h1 span{
+            color: #FF3531;
+        }
+        .sec1-cases{
+            position: relative;
+            top: calc(50% - 342px);
+            left: calc(50% - 172px);
+        }
+        .sec1-case{
+            position: absolute;
+        }
+        .sec1 .sec1-scroll{
+            position: absolute;
+            bottom: 24px;
+            left: calc(50% - 12px);
+        }
+        .sec1-case-color{
+            fill: #000;
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .sec2{
+            background-color: #f3f3f3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .sec2 h2{
+            font-size: 24px;
+            margin-bottom: 100px;
+            color: var(--gray1);
+        }
+        .sec2-items{
+            display: flex;
+            gap: 32px;
+            text-align: center;
+            align-items: center;
+            position: relative;
+        }
+        .sec2-items .item-img {
+            border-radius: 12px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            transition: all 0.3s ease-out;
+        }
+        .sec2-items .item-img:hover{
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+        .sec2-items .item-img.selected{
+            box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        }
+        .sec2-items p {
+            font-size: 16px;
+            margin-top: 8px;
+            color: var(--gray1);
+        }
+        .sec2-leftbtn{
+            position: absolute;
+            left: -80px;
+        }
+        .sec2-rightbtn{
+            position: absolute;
+            right: -80px;
+        }
+        .sec2-scroll{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 120px;
+        }
+        .sec2-next{
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray2);
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .sec3{
+            background-color: #F9FAFB;
+            position: relative;
+            padding-left: 80px;
+            display: flex;
+            align-items: center;
+        }
+        .sec3 h3{
+            font-size: 18px;
+            color: var(--gray2);
+            font-weight: 600;
+            margin-top: 12px;
+            margin-bottom: 72px;
+        }
+        .sec3 h4{
+            font-size: 16px;
+            color: var(--gray3);
+            font-weight: 600;
+        }
+        .sec3 p{
+            font-size: 16px;
+            color: var(--gray3);
+            font-weight: 600;
+        }
+        .sec3 .btns{
+            display: flex;
+            gap: 8px;
+        }
+        .sec3 .btn{
+            height: 36px;
+            width: 80px;
+            background-color: var(--gray3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s ease-in-out;
+        }
+        .sec3 .btn:hover{
+            background-color: white;
+            border: 1px solid var(--gray3);
+            color: var(--gray3);
+        }
+        .back-btn{
+            border-radius: 18px 0px 0px 18px;
+        }
+        .next-btn{
+            border-radius: 0px 18px 18px 0px;
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .sec3 .steps{
+            display: flex;
+            flex-direction: column;
+            gap: 120px;
+            position: relative;
+        }
+        .steps-line{
+            position: absolute;
+            border: 1px solid var(--gray3);
+            height: 460px;
+            left: 94px;
+        }
+        .sec3 .steps p{
+            color: var(--gray3);
+            font-size: 18px;
+            font-weight: 600;
+            z-index: 1;
+        }
+        .sec3 .steps-each{
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+        /* .steps2.open{
+            color: var(--gray1);
+        }
+        .steps-num .steps-num2.open{
+            background-color: var(--gray1);
+        } */
+        .sec3 .steps-num{
+            background-color: var(--gray3);
+            width: 28px;
+            height: 28px;
+            border-radius: 16px;
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            left: 80px;
+            z-index: 1;
+        }        
+        .step1{
+            padding-top: 96px;
+            width: 50vw;
+            background-color: var(--white);
+            height: 100vh;
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .step2{
+            padding-top: 96px;
+            width: 50vw;
+            background-color: var(--white);
+            height: 100vh;
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translateX(50vw);
+            transition: transform 0.5s ease-in-out;
+        }
+        .step2.open{
+            transform: translateX(0);
+        }
+        .step3{
+            padding-top: 96px;
+            width: 50vw;
+            background-color: var(--white);
+            height: 100vh;
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translateX(50vw);
+            transition: transform 0.5s ease-in-out;
+        }
+        .step3.open{
+            transform: translateX(0);
+        }
+        .step4{
+            padding-top: 96px;
+            width: 50vw;
+            background-color: var(--white);
+            height: 100vh;
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translateX(50vw);
+            transition: transform 0.5s ease-in-out;
+        }
+        .step4.open{
+            transform: translateX(0);
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .customs{
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            margin-bottom: 40px;
+        }
+        .custom-tag{
+            position: absolute;
+            left: 160px;
+        }
+        .sec3 .custom-fin{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 100px;
+        }
+        .custom-fin p{
+            font-size: 20px;
+            color: #333;
+        }
+        .custom{
+            position: absolute;
+            left: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .custom-case{
+            position: absolute;
+        }
+        .custom-case-img{
+            width: 301px;
+            height: 633px;
+            border-radius: 46px;
+            background-color: var(--gray4);
+            background-image: url(images/custom/iphone-back.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        .custom-case-img-finish{
+            width: 271px;
+            height: 570px;
+            border-radius: 42px;
+            background-color: var(--gray4);
+            background-image: url(images/custom/iphone-back.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        .custom-case-color{
+            fill: rgb(0, 0, 0);
+        }
+        .custom-case-color-finish{
+            fill: rgb(0, 0, 0);
+        }
+        .custom-case-magsafe{
+            display: none;
+        }
+        .custom-case-magsafe.hidden{
+            display: block;
+        }
+        .custom-case-strap{
+            display: none;
+        }
+        .custom-case-strap.hidden{
+            display: block;
+        }
+        .custom-case-text{
+            font-size: 24px;
+        }
+        .custom-case-text.pos1{
+            font-size: 24px;
+        }
+        .custom-case-text.pos2{
+            margin-top: 560px;
+        }
+        .custom-case-text.pos3{
+            transform: rotate(-90deg);
+            margin-left: 240px;
+        }
+        .custom-case-text.style1{
+            font-weight: 400;
+        }
+        .custom-case-text.style2{
+            font-style: italic;
+        }
+        .custom-case-text.style3{
+            font-weight: 700;
+        }
+        .custom-strap-text{
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-left: 148px;
+            margin-top: 100px;
+            transform: rotate(-80deg);
+        }
+        .patterns{
+            width: 56px;
+            height: 56px;
+            border-radius: 4px;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999999;
+            font-weight: 600;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border: 1px solid #C5C5C5;
+        }
+        .pattern h4{
+            margin-bottom: 20px;
+        }
+        .custom-image{
+            margin-top: 48px;
+        }
+        .custom-image h4{
+            margin-bottom: 20px;
+        }
+        .custom-straptext h4{
+            margin-bottom: 20px;
+        }
+        .custom-text{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .custom-texts{
+            display: flex;
+            flex-direction: row;
+            gap: 56px
+        }
+        .custom-textpos,.custom-textstyle,.custom-textcolor{
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .custom-textcolor{
+            margin-top: 40px;
+        }
+        .textcolors{
+            width: 32px;
+            height: 32px;
+            background-color: #999999;
+            border: 2px solid #999;
+            border-radius: 16px;
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .custom-finish{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .custom-case-finish{
+            position: absolute;
+        }
+        .sec4{
+            width: 100vw;
+            height: 100%;
+            background-color: var(--white);
+            z-index: 3;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translateX(100vw);
+            transition: transform 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 156px;
+            padding-top: 96px;
+        }
+        .sec4.open{
+            transform: translateX(0);
+        }
+        .sec4-back{
+            position: absolute;
+            top: calc(96px + 36px);
+            left: 36px;
+        }
+        .sec4-icon{
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+        }
+        .sec4-btn{
+            margin-top: 24px;
+            margin-bottom: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 36px;
+            background-color: var(--gray2);
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 18px;
+            transition: all 0.3s ease-in-out;
+        }
+        .sec4-btn:hover{
+            background-color: var(--white);
+            border: 2px solid var(--gray1);
+            color: var(--gray1);
+        }
+        .sec4-sns-content p{
+            margin-bottom: 12px;
+        }
+        .sec4-sns-item{
+            display: flex;
+            flex-direction: row;
+            gap: 24px;
+        }
+        .sec4-context-R{
+            width: 316px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .sec4-price{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .sec4-price p{
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray2);
+        }
+        .sec4-price-line{
+            border: 1px solid var(--gray2);
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        select{
+                width: 200px;
+                height: 36px;
+                padding-left: 10px;
+                font-size: 16px;
+                color: var(--gray3);
+                }        
+        input[type="file"] {
+            position: absolute;
+            width: 0;
+            height: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 0;
+        }
+        input[type="text"]{
+            width: 280px;
+            height: 36px;
+            font-size: 15px;
+            border: 1px solid var(--gray3);
+            border-radius: 4px;
+            outline: none;
+            padding-left: 10px;
+        }
+        input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid var(--gray3);
+            background: var(--gray4);
+            appearance: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        input[type="checkbox"]:checked {
+            background: var(--gray2);
+        }
+        input[type="color"]{
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: transparent;
+            border: 2px solid #999;
+        }
+        input[type="color"]::-webkit-color-swatch{
+            border-radius: 16px;
+            border: none;
+        }
+        .custom-tag-image .upload-name {
+            height: 40px;
+            padding: 0 10px;
+            vertical-align: middle;
+            border: 1px solid #c5c5c5;
+            width: 200px;
+            color: #999999;
+            font-size: 16px;
+        }
+        .custom-tag-image label {
+            padding: 10px 20px;
+            color: #fff;
+            vertical-align: middle;
+            background-color: #999999;
+            cursor: pointer;
+            height: 40px;
+            margin-left: 10px;
+            font-size: 15px;
+        }
+        .custom-tag-image{
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+        }
+        .custom-tag-image .custom-image-del{
+            width: 40px;
+            height: 40px;
+            background-color: var(--white);
+            border: 1px solid var(--gray4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray3);
+            font-weight: 700;
+            font-size: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+        .custom-tag-image .custom-image-del:hover{
+            background-color: var(--gray3);
+            color: var(--white);
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .footer{
+            height: 320px;
+            background-color: var(--gray1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 0 56px;
+            padding-top: 40px;
+            color: var(--white);
+        }
+        .footer-content{
+            display: flex;
+            /* justify-content: space-between; */
+            width: 100%;
+            align-items: flex-end;
+            margin-top: auto;
+            margin-bottom: 40px;
+        }
+        .footer-follow{
+            flex-grow: 1;
+        }
+        .footer-follow p{
+            margin-bottom: 12px;
+        }
+        .footer-sns{
+            display: flex;
+            flex-direction: row;
+            gap: 24px;
+        }
+        .footer-about{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            flex-grow: 1;
+        }
+        .footer-about a{
+            color: var(--white);
+            text-decoration: none;
+            line-height: 180%;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+            <a class="logo" href="index.html"><img src="images/logo.png" alt="#" height="60px"></a>
+            <ul class="navbar">
+                <li><a href="#">기종</a></li>
+                <li><a href="#">시그니쳐</a></li>
+                <li><a href="colab.html">Co-Lab</a></li>
+                <li><a id="currentnav" href="#">커스텀</a></li>
+                <li><a href="#">액세서리</a></li>
+                <li><a href="#">트렌딩</a></li>
+            </ul>
+            <ul class="navlogo">
+                <li><a href="#"><img src="images/nav-lan.png" alt="#" width="24px"></a></li>
+                <li><a href="#"><img src="images/nav-per.png" alt="#" width="24px"></a></li>
+                <li><a href="#"><img src="images/nav-cart.png" alt="#" width="24px"></a></li>
+                <li><a href="#"><img src="images/nav-search.png" alt="#" width="24px"></a></li>
+            </ul>
+    </div>
+
+    <div class="sec sec1">
+        <h1><span>C</span>USTOM <br> YOUR <br> CASE</h1>
+        <div class="sec1-cases">
+            <svg class="sec1-case" width="353" height="686" viewBox="0 0 353 686" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect class="sec1-case-color" x="4.08911" y="0.0292969" width="344.822" height="685.234" rx="61.7328" fill="black"/>
+                <rect class="sec1-case-color" x="345.383" y="191.977" width="7.6167" height="48.4647" rx="1.76379" fill="black"/>
+                <rect class="sec1-case-color" x="345.383" y="255.553" width="7.6167" height="48.4647" rx="1.76379" fill="black"/>
+                <rect class="sec1-case-color" y="207.399" width="7.6167" height="81.3447" rx="1.76379" fill="black"/>
+            </svg>                
+            <img class="sec1-case" src="images/custom/sec1-case.png" alt="#">
+        </div>
+        <img class="sec1-scroll" src="images/custom/sec1-arrow.png" alt="#" width="24px">
+    </div>
+
+    <div class="sec sec2">
+        <h2>커스텀 하고 싶은 케이스를 선택하세요!</h2>
+        <div class="sec2-items">
+            <div class="item itemA">
+                <img class="item-img itemA-img" src="images/custom/sec2-item1.png" alt="#" width="240px">
+                <p class="item-text itemA-text">iPhone</p>
+            </div>
+            <div class="item itemB">
+                <img class="item-img itemB-img" src="images/custom/sec2-item2.png" alt="#" width="240px">
+                <p class="item-text itemB-text">Galaxy S series</p>
+            </div>
+            <div class="item itemC">
+                <img class="item-img itemC-img" src="images/custom/sec2-item3.png" alt="#" width="240px">
+                <p class="item-text itemC-text">AirPods Pro</p>
+            </div>
+            <div class="item itemD">
+                <img class="item-img itemD-img" src="images/custom/sec2-item4.png" alt="#" width="240px">
+                <p class="item-text itemD-text">Galaxy Buds</p>
+            </div>
+
+            <div class="sec2-leftbtn"><img src="images/sec2-left-btn.png" alt="#" width="32px"></div>
+            <div class="sec2-rightbtn"><img src="images/sec2-right-btn.png" alt="#" width="32px"></div>
+        </div>
+
+        <div class="sec2-scroll">
+            <p class="sec2-next">NEXT</p>
+            <img src="images/scroll.png" alt="#" width="24px">
+        </div>
+    </div>
+
+    <div class="sec sec3">
+        <div class="steps">
+            <div class="steps-each steps1">
+                <p>Case</p>
+                <div class="steps-num steps-num1">1</div>
+            </div>
+            <div class="steps-each steps2">
+                <p>Image</p>
+                <div class="steps-num steps-num2">2</div>
+            </div>
+            <div class="steps-each steps3">
+                <p>Text</p>
+                <div class="steps-num steps-num3">3</div>
+            </div>
+            <div class="steps-each steps4">
+                <p>Strap</p>
+                <div class="steps-num steps-num4">4</div>
+            </div>
+            <div class="steps-line"></div>
+        </div>
+
+        <div class="custom">
+            <svg class="custom-case" width="413" height="690" viewBox="0 0 413 690" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect class="custom-case-color" x="38.3906" y="10.4419" width="336.278" height="668.256" rx="60.2033" fill="black"/>
+                <rect class="custom-case-color" x="371.229" y="197.634" width="7.42798" height="47.2639" rx="1.72009" fill="black"/>
+                <rect class="custom-case-color" x="371.229" y="259.635" width="7.42798" height="47.2639" rx="1.72009" fill="black"/>
+                <rect class="custom-case-color" x="34.4023" y="212.674" width="7.42798" height="79.3292" rx="1.72009" fill="black"/>
+            </svg>
+            <div class="custom-case custom-case-img"></div>
+            <img class="custom-case custom-case-magsafe" src="images/magsafe.png" alt="#">
+            <img class="custom-case"src="images/camera.png" alt="#">
+            <div class="custom-case custom-case-text"></div>
+            <img class="custom-case custom-case-strap" src="images/strap.png" alt="#">
+            <div class="custom-case custom-strap-text"></div>
+        </div>
+
+        <div class="step1">
+            <div class="step1-custom">
+                <p>iPhone</p>
+                <h3>케이스의 종류 및 색상과 맥세이프 유무를 선택하세요</h3>
+                <div class="customs case">
+                    <h4>종류</h4>
+                    <select class="custom-tag" name="case">
+                        <option value="임팩트 케이스">임팩트 케이스</option>
+                        <option value="임팩트 케이스">바운스 케이스</option>
+                    </select>
+                </div>
+                <div class="customs color">
+                    <h4>색상</h4>
+                    <input class="custom-tag custom-tag-color" type="color" id="color" name="selectColor" value="#000">
+                </div>
+                <div class="customs magsafe">
+                    <h4>맥세이프</h4>
+                    <div class="custom-tag custom-tag-magsafe" class="step1-chectboxA">
+                        <input type="checkbox" id="color" name="selectColor" value="color">
+                    </div>
+                </div>
+                <div class="custom-fin">
+                    <p class="price">₩ 72000</p>
+                
+                    <div class="btns">
+                        <div class="back-btn back-btn1 btn">BACK</div>
+                        <div class="next-btn next-btn1 btn">NEXT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="step2">
+            <div class="step1-custom">
+                <p>iPhone</p>
+                <h3>케이스에 새기고 싶은 이미지 또는 패턴을 선택하세요</h3>
+                <div class="pattern">
+                    <h4>패턴</h4>
+                    <div class="pattens-all" style="display: flex; flex-direction: row; gap: 12px;">
+                        <div class="patterns pattern1" style="background-image: url(images/custom/sec3-pattern1.png);"></div>
+                        <div class="patterns pattern2" style="background-image: url(images/custom/sec3-pattern2.png);"></div>
+                        <div class="patterns pattern3" style="background-image: url(images/custom/sec3-pattern3.png);"></div>
+                        <div class="patterns pattern4">없음</div>
+                    </div>
+                </div>
+
+                <div class="custom-image ">
+                    <h4>이미지</h4>
+                    <div class="custom-tag-image">
+                        <input class="upload-name" value="첨부파일 (png,jpg,jpeg)" placeholder="첨부파일 (png,jpg,jpeg)" accept=".png, .jpg, .jpeg">
+                        <label for="file">파일선택</label> 
+                        <input type="file" id="file" accept=".png, .jpg, .jpeg">
+                        <div class="custom-image-del">X</div>
+                    </div>
+                </div>
+
+                <div class="custom-fin">
+                    <p class="price">₩ 72000</p>
+                
+                    <div class="btns">
+                        <div class="back-btn back-btn2 btn">BACK</div>
+                        <div class="next-btn next-btn2 btn">NEXT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="step3">
+            <div class="step1-custom">
+                <p>iPhone</p>
+                <h3>케이스에 각인하고 싶은 문구를 입력하세요</h3>
+                <div class="customs custom-text">
+                    <h4>원하는 문구를 입력하세요</h4>
+                    <input class="custom-tag-text" type="text" placeholder="최대 6글자 / 영어만 가능" maxlength="6" oninput="handleOnInput(this)"/>
+                </div>
+
+                <div class="custom-texts">
+                    <div class="custom-textpos" style="display: flex; flex-direction: column;">
+                        <h4>폰트 위치</h4>
+                        <div class="textpos-all" style="display: flex; flex-direction: row; gap: 12px;">
+                            <div class="patterns custom-textpos1" style="font-weight: 400;">TEXT</div>
+                            <div class="patterns custom-textpos2" style="padding-top: 24px; font-weight: 400;">TEXT</div>
+                            <div class="patterns custom-textpos3" style="padding-top: 24px; font-weight: 400; transform: rotate(-90deg);">TEXT</div>
+                        </div>                
+                    </div>
+
+                    <div class="custom-textstyle">
+                        <h4>폰트 스타일</h4>
+                        <div class="textstyle-all" style="display: flex; flex-direction: row; gap: 12px;">
+                            <div class="patterns custom-textstyle1" style="font-weight: 400;">TEXT</div>
+                            <div class="patterns custom-textstyle2" style="font-weight: 400; font-style: italic;">TEXT</div>
+                            <div class="patterns custom-textstyle3" style="font-weight: 700;">TEXT</div>
+                        </div>                
+                    </div>
+                </div>
+
+                <div class="custom-textcolor">
+                    <h4>문구 색상</h4>
+                    <div class="textcolor-all" style="display: flex; flex-direction: row; gap: 12px;">
+                        <input class="textcolors textcolor0" type="color" id="color" name="selectColor" value="#999">
+                        <div class="textcolors textcolor1" style="background-color: #000;"></div>
+                        <div class="textcolors textcolor2" style="background-color: white;"></div>
+                    </div>                
+                </div>
+
+                <div class="custom-fin">
+                    <p class="price">₩ 72000</p>
+                
+                    <div class="btns">
+                        <div class="back-btn back-btn3 btn">BACK</div>
+                        <div class="next-btn next-btn3 btn">NEXT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="step4">
+            <div class="step1-custom">
+                <p>iPhone</p>
+                <h3>케이스에 각인하고 싶은 문구를 입력하세요</h3>
+                <div class="customs custom-strap">
+                    <h4>스트랩</h4>
+                    <div class="custom-tag custom-tag-strap">
+                        <input type="checkbox" id="selectstrap" value="selectstrap" onclick="toggleInput()">
+                    </div>
+                </div>
+
+                <div class="custom-straptext">
+                    <h4>원하는 문구를 입력하세요</h4>
+                    <input class="custom-tag-straptext" type="text" placeholder="최대 4글자 / 영어만 가능" maxlength="4" oninput="handleOnInput(this)" />
+                </div>
+
+                <div class="custom-fin">
+                    <p class="price">₩ 72000</p>
+                
+                    <div class="btns">
+                        <div class="back-btn back-btn4 btn">BACK</div>
+                        <div class="next-btn next-btn4 btn">NEXT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sec4">
+            <img class="sec4-back" src="images/custom/arrow-back.png" alt="#" width="24px">
+
+            <div class="sec4-context-L">
+                <div class="sec4-icon">
+                    <img src="images/custom/sec4-favortie.png" alt="#" width="24px">
+                    <img src="images/custom/sec4-bag.png" alt="#" width="24px">
+                </div>
+                <h2>CASTiFY 커스텀 케이스가<br>완성되었습니다 !</h2>
+                <div class="sec4-btn">구매하기</div>
+                <div class="sec4-sns-content">
+                    <p>SNS를 통해 친구들에게 공유해 보세요</p>
+                    <div class="sec4-sns-item" >
+                        <a href="#"><img src="images/custom/sec4-sns1.png" alt="#" width="36px"></a>
+                        <a href="#"><img src="images/custom/sec4-sns2.png" alt="#" width="36px"></a>
+                        <a href="#"><img src="images/custom/sec4-sns3.png" alt="#" width="36px"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="custom-finish">
+                <svg class="custom-case" width="413" height="690" viewBox="0 0 413 690" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="custom-case-color" x="38.3906" y="10.4419" width="336.278" height="668.256" rx="60.2033" fill="black"/>
+                    <rect class="custom-case-color" x="371.229" y="197.634" width="7.42798" height="47.2639" rx="1.72009" fill="black"/>
+                    <rect class="custom-case-color" x="371.229" y="259.635" width="7.42798" height="47.2639" rx="1.72009" fill="black"/>
+                    <rect class="custom-case-color" x="34.4023" y="212.674" width="7.42798" height="79.3292" rx="1.72009" fill="black"/>
+                </svg>
+                <div class="custom-case custom-case-img"></div>
+                <img class="custom-case custom-case-magsafe" src="images/magsafe.png" alt="#">
+                <img class="custom-case"src="images/camera.png" alt="#">
+                <div class="custom-case custom-case-text"></div>
+                <img class="custom-finish custom-case custom-case-strap" src="images/strap.png" alt="#">
+                <div class="custom-case custom-strap-text"></div>
+            </div>
+    
+            <div class="sec4-context-R">
+                <div class="sec4-price">
+                    <p>기본</p>
+                    <p>₩ 72000</p>
+                </div>
+                <div class="sec4-price">
+                    <p>맥세이프</p>
+                    <p class="sec4-fin-magprice">₩ 0</p>
+                </div>
+                <div class="sec4-price">
+                    <p>이미지</p>
+                    <p class="sec4-fin-imgprice">₩ 0</p>
+                </div>
+                <div class="sec4-price">
+                    <p>각인</p>
+                    <p class="sec4-fin-textprice">₩ 0</p>
+                </div>
+                <div class="sec4-price">
+                    <p>스트랩</p>
+                    <p class="sec4-fin-strapprice">₩ 0</p>
+                </div>
+                <div class="sec4-price-line"></div>
+                <div class="sec4-price">
+                    <p>총합</p>
+                    <p class="sec4-fin-price">₩ 103000</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sec footer">
+        <a href="#"><img src="images/logo.png" alt="#" height="48px"></a>
+        <div class="footer-content">
+            <div class="footer-follow">
+                <p>Follow</p>
+                <div class="footer-sns">
+                    <a href="#"><img src="images/Facebook.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Twitter.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Instagram.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Tik Tok.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Pinterest.png" alt="#" width="24px"></a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>Copyright C 2023 CASETIFY  ㅣ  개인정보 처리방침  ㅣ  약관</p>
+            </div>
+            <div class="footer-about">
+                <a href="#">CASTiFY CLUB</a>
+                <a href="#">ABOUT CASETIFY</a>
+                <a href="#">문의하기</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="custom.js"></script>
+</body>
+</html>

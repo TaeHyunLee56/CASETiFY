@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Co-Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans', sans-serif;
+        }
+        :root{
+            --white: #ffffff;
+            --gray1: #333333;
+            --gray2: #666666;
+            --gray3: #999999;
+            --gray4: #c5c5c5;
+        }
+        body{
+            overflow-x: hidden;
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+.nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100vw;
+            height: 96px;
+            padding: 0 40px;
+            z-index: +50;
+        }
+        .navbar{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+            width: 648px;
+            height: 48px;
+            border-radius: 24px;
+            padding: 0 78px;
+            background-color: var(--white);
+            border: 2px solid var(--gray3);
+        }
+        .navbar a{
+            text-decoration: none;
+            color: var(--gray3);
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s ease-in-out;
+        }
+        .navbar a:hover{
+            color: var(--gray1);
+        }
+        #currentnav{
+            color: var(--gray1);
+        }
+        .navlogo{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+        }
+        .navlogo li:not(:last-child){
+            margin-right: 12px;
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        h2{
+            color: var(--gray1);
+            font-size: 32px;
+            line-height: 180%;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 72px;
+        }
+        .main-p{
+            text-align: center;
+            margin-bottom: 72px;
+            font-size: 16px;
+            line-height: 160%;
+            color: var(--gray1);
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .slider-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 500px;
+            width: 100vw;
+            perspective: 1000px;
+            position: relative;
+            transform-style: preserve-3d;
+            overflow-x: hidden;
+            overflow-y: visible;
+        }
+        .slide {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 20px;
+            width: 320px;
+            height: 420px;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+        }
+
+        .slide .content {
+            background-color: rgba(0, 0, 0, 0.6);
+            text-align: center;
+            border-radius: 20px;
+            width: 320px;
+            height: 420px;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .slide .content h2{
+            color: var(--white);
+            font-size: 16px;
+            line-height: 160%;
+            margin: 80px 0 0 0;
+        }
+        .slide .content p{
+            color: var(--white);
+            font-size: 14px;
+            line-height: 180%;
+            text-align: center;
+            width: 248px;
+            margin-top: 24px;
+            margin-left: auto;
+            margin-right: auto;
+            margin: 40px 0 0 0;
+        }
+        .slide:hover .content{
+            opacity: 1;
+        }
+        .content .btn{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 36px;
+            background-color: var(--white);
+            color: var(--gray1);
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 18px;
+            margin-top: auto;
+            margin-bottom: 72px;
+            transition: all 0.3s ease-in-out;
+        }
+        .content .btn:hover{
+            background-color: var(--gray1);
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .slide.slide-1 {
+            transform-origin: right;
+            transform: scale(0.95) rotateY(-20deg);
+            left: 1.5% !important;
+            z-index: 1;
+            opacity: 1;
+        }
+        .slide.slide-2 {
+            transform-origin: right;
+            transform: rotateY(-10deg);
+            left: 20% !important;
+            z-index: 2;
+            opacity: 1;
+        }
+        .slide.slide-3 {
+            left: 40% !important;
+            z-index: 2;
+            opacity: 1;
+        }
+        .slide.slide-4 {
+            transform-origin: left;
+            transform: rotateY(10deg);
+            left: 60% !important;
+            z-index: 2;
+            opacity: 1;
+        }
+        .slide.slide-5 {
+            transform-origin: left;
+            transform: scale(0.95) rotateY(20deg);
+            margin-left: 0;
+            left: 78.5% !important;
+            z-index: 1;
+            opacity: 1;
+        }
+
+        .buttons-container {
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            gap: 360px;
+        }
+        .arrow path{
+            transition: all 0.3s ease-in-out;
+        }
+        .arrow path:hover{
+            fill: var(--gray3);
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .footer{
+            height: 320px;
+            background-color: var(--gray1);
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 0 56px;
+            padding-top: 40px;
+            color: var(--white);
+        }
+        .footer-content{
+            display: flex;
+            /* justify-content: space-between; */
+            width: 100%;
+            align-items: flex-end;
+            margin-top: auto;
+            margin-bottom: 40px;
+        }
+        .footer-follow{
+            flex-grow: 1;
+        }
+        .footer-follow p{
+            margin-bottom: 12px;
+        }
+        .footer-sns{
+            display: flex;
+            flex-direction: row;
+            gap: 24px;
+        }
+        .footer-about{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            flex-grow: 1;
+        }
+        .footer-about a{
+            color: var(--white);
+            text-decoration: none;
+            line-height: 180%;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a class="logo" href="index.html"><img src="images/logo.png" alt="#" height="60px"></a>
+        <ul class="navbar">
+            <li><a href="#">기종</a></li>
+            <li><a href="#">시그니쳐</a></li>
+            <li><a id="currentnav" href="#">Co-Lab</a></li>
+            <li><a href="custom.html">커스텀</a></li>
+            <li><a href="#">액세서리</a></li>
+            <li><a href="#">트렌딩</a></li>
+        </ul>
+        <ul class="navlogo">
+            <li><a href="#"><img src="images/nav-lan.png" alt="#" width="24px"></a></li>
+            <li><a href="#"><img src="images/nav-per.png" alt="#" width="24px"></a></li>
+            <li><a href="#"><img src="images/nav-cart.png" alt="#" width="24px"></a></li>
+            <li><a href="#"><img src="images/nav-search.png" alt="#" width="24px"></a></li>
+        </ul>
+    </div>
+
+    <h2>Co-Lab</h2>
+    <p class="main-p">CASETiFY는 다양한 브랜드와 콜라보하여 더욱 가치있는 케이스를 제작합니다.</p>
+
+        <div class="slider-container">
+            <div class="slide slide-1" style="background-image: url('images/co-lab/item1.png')">
+                <div class="content">
+                    <h2>SpongeBob</h2>
+                    <p>다들 준비됐나. 네 선장님! 다시 돌아온 스폰지밥 x 케이스티파이 컬렉션! 스폰지밥, 뚱이, 그리고 징징이 중 여러분의 최애 캐릭터를 선택해 FUN 송을 함께 불러보아요!</p>
+                    <a class="btn" href="#">MORE</a>
+                </div>
+            </div>
+            <div class="slide slide-2" style="background-image: url('images/co-lab/item2.png')">
+                <div class="content">
+                    <h2>Mr. Men Little Miss</h2>
+                    <p>더욱 다채롭게 돌아온 미스터맨 리틀미스 컬렉션! 유쾌하고 활기찬 디자인으로 별난 모험을 좋아하는 사람 모두를 위한 미스터맨 리틀미스 컬렉션!</p>
+                    <a class="btn" href="#">MORE</a>
+                </div>
+            </div>
+            <div class="slide slide-3" style="background-image: url('images/co-lab/item3.png')">
+                <div class="content">
+                    <h2>National Museum of Korea</h2>
+                    <p>한국 전통 예술의 세계로! CASTiFY가 한국의 국립중앙박물관과 만나 가장 유서 깊은 보물들을 케이스에 담아냅니다.</p>
+                    <a class="btn" href="#">MORE</a>
+                </div>
+            </div>
+            <div class="slide slide-4" style="background-image: url('images/co-lab/item4.png')">
+                <div class="content">
+                    <h2>Disney Mickey & Friends</h2>
+                    <p>디즈니가 새로운 컬렉션으로 케이스티파이를 다시 찾아옵니다! 디즈니 미키 마우스와 친구들이 함께라 더욱 귀엽고 사랑스러운 컬렉션을 만나보세요!</p>
+                    <a class="btn" href="#">MORE</a>
+                </div>
+            </div>
+            <div class="slide slide-5" style="background-image: url('images/co-lab/item5.png')">
+                <div class="content">
+                    <h2>David Shrigley</h2>
+                    <p>더욱 다채롭게 돌아온 데이비드 슈리글리 x 케이스티파이 컬렉션! 감각적인 위트 넘치는 문구가 담긴 핸드라이팅 디자인을 테크 액세서리로 즐겨보세요!</p>
+                    <a class="btn" href="#">MORE</a>
+                </div>
+            </div>
+            <div class="slide slide-6" style="background-image: url('images/co-lab/item6.png')">
+                <div class="content">
+                    <h2>BLVCK Paris</h2>
+                    <p>BLVCK Paris x 케이스티파이가 새로운 블랙으로 돌아왔습니다. 컬렉션과 함께 BLVCK이 새롭게 정의하는 블랙을 만나고 블랙의 새로운 지평을 열어보세요.</p>
+                    <a class="btn" href="#">MORE</a>
+                </div>
+            </div>
+
+            <div class="buttons-container">
+                    <svg class="arrow left" width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M-5.24537e-07 11L18 0.607696L18 21.3923L-5.24537e-07 11Z" fill="#333333"/>
+                    </svg>
+                    <svg class="arrow right" width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 11L9.78799e-07 0.607696L7.02746e-08 21.3923L18 11Z" fill="#333333"/>
+                    </svg>
+            </div>
+        </div>
+
+    <div class="footer">
+        <a href="#"><img src="images/logo.png" alt="#" height="48px"></a>
+        <div class="footer-content">
+            <div class="footer-follow">
+                <p>Follow</p>
+                <div class="footer-sns">
+                    <a href="#"><img src="images/Facebook.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Twitter.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Instagram.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Tik Tok.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Pinterest.png" alt="#" width="24px"></a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>Copyright C 2023 CASETIFY  ㅣ  개인정보 처리방침  ㅣ  약관</p>
+            </div>
+            <div class="footer-about">
+                <a href="#">CASTiFY CLUB</a>
+                <a href="#">ABOUT CASETIFY</a>
+                <a href="#">문의하기</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+            const leftButton = document.querySelector('.arrow.left');
+            const rightButton = document.querySelector('.arrow.right');
+
+            leftButton.addEventListener('click', () => {
+                turnSlider('left');
+            });
+
+            rightButton.addEventListener('click', () => {
+                turnSlider('right');
+            });
+
+            function turnSlider(direction) {
+                const slides = document.querySelectorAll(`.slide`);
+                slides.forEach(slide => {
+                    let currentSlide = +(slide.classList + '').split('-')[1];
+                    let slideToBe;
+                    switch(direction) {
+                        case 'left': {
+                            slideToBe = currentSlide - 1;
+                            if(slideToBe < 1) {
+                                slideToBe = slides.length;
+                                slide.style.left = '-500px';
+                            }
+                            break;
+                        }
+                        case 'right': {
+                            slideToBe = currentSlide + 1;
+                            if(slideToBe > slides.length) {
+                                slideToBe = 1;
+                                slide.style.left = '2000px';
+                            }
+                            break;
+                        }
+                    }
+                    slide.classList.remove(`slide-${currentSlide}`);
+                    slide.classList.add(`slide-${slideToBe}`);
+                });
+            }
+    </script>
+</body>
+</html>

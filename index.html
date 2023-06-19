@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans', sans-serif;
+        }
+        :root{
+            --white: #ffffff;
+            --gray1: #333333;
+            --gray2: #666666;
+            --gray3: #999999;
+            --gray4: #c5c5c5;
+        }
+        body{
+            overflow-x: hidden
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .btn{
+            margin-top: 104px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 36px;
+            background-color: var(--gray1);
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 18px;
+            transition: all 0.3s ease-in-out;
+        }
+        .btn:hover{
+            background-color: var(--white);
+            border: 2px solid var(--gray1);
+            color: var(--gray1);
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100vw;
+            height: 96px;
+            padding: 0 40px;
+            z-index: +50;
+        }
+        .navbar{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+            width: 648px;
+            height: 48px;
+            border-radius: 24px;
+            padding: 0 78px;
+            background-color: var(--white);
+            border: 2px solid var(--gray3);
+        }
+        .navbar a{
+            text-decoration: none;
+            color: var(--gray3);
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s ease-in-out;
+        }
+        .navbar a:hover{
+            color: var(--gray1);
+        }
+        #currentnav{
+            color: var(--gray1);
+        }
+        .navlogo{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+        }
+        .navlogo li:not(:last-child){
+            margin-right: 12px;
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .header{
+            height: calc(100vh - 96px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url(images/main/header.png);
+            position: relative;
+        }
+        .header-overlay{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        .header-h2{
+            font-size: 64px;
+            font-weight: 600;
+            color: var(--white);
+            text-align: center;
+            width: 548px;
+            height: 548px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: +5;
+        }
+        .header-h2 span{
+            color: #FF3531;
+        }
+        .header-line{
+            position: absolute;
+            top: 50%;
+            border-top: 2px solid var(--white);
+            width: 100%;
+            z-index: +3;
+        }
+        .header-circle1{
+            width: 548px;
+            height: 548px;
+            border-radius: 274px;
+            background-color: var(--white);
+            position: absolute;
+            top: calc(50% - 274px);
+            left: calc(50% - 274px);
+            z-index: +4;
+        }
+        .header-circle2{
+            width: 548px;
+            height: 548px;
+            border-radius: 274px;
+            background-color: var(--gray1);
+            position: absolute;
+            top: calc(50% - 274px);
+            left: calc(50% - 274px);
+            z-index: +4;
+            transition: left 0.1s ease;
+            transform: translateX(-8px);
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .sec1{
+            margin-top: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 200px;
+        }
+        .sec1 h2{
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 112px;
+        }
+        .sec1-items{
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+        }
+        .sec1-item{
+            transition: all 0.5s ease-in-out;
+            opacity: 0;
+        }
+        .sec1-itema{
+            transform: translateY(0px);
+        }
+        .sec1-itema.scroll{
+            transform: translateY(-40px);
+            opacity: 1;
+        }
+        .sec1-itemb{
+            transform: translateY(0px);
+        }
+        .sec1-itemb.scroll{
+            transform: translateY(40px);
+            opacity: 1;
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .sec2{
+            display: flex;
+            padding: 0 169px;
+            justify-content: space-between;
+            margin-bottom: 200px;
+        }
+        .sec2 h2{
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 80px;
+        }
+        .sec2 p{
+            width: 308px;
+        }
+        .sec2-items{
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+            width: 648px;
+            flex-wrap: wrap;
+        }
+        .sec2-item{
+            opacity: 0;
+        }
+        .sec2-itema{
+            transition: all 0.5s ease-in-out;
+            transform: translateY(160px);
+        }
+        .sec2-itemb{
+            transform: translateY(80px);
+            transition: all 0.8s ease-in-out;
+        }
+        .sec2-itema.scroll{
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .sec2-itemb.scroll{
+            transform: translateY(-80px);
+            opacity: 1;
+        }
+        .sec2-context{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 80px;
+        }
+        .sec2 .btn{
+            margin-top: auto;
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .sec3{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 200px;
+        }
+        .sec3-content{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .sec3-bar1{
+            display: flex;
+        }
+        .slider{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            animation: slide 20s infinite linear;
+        }
+        .sec3-bar1 p{
+            background-color: var(--gray1);
+            height: 40px;
+            width: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 700;
+        }
+        .sec3-bar2{
+            display: flex;
+        }
+        .slider2{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            animation: slide2 20s infinite linear;
+        }
+        .sec3-bar2 p{
+            background-color: var(--gray1);
+            height: 40px;
+            width: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 700;
+        }
+        @keyframes slide{
+            from{
+                transform: translateX(0%);
+            }
+            to{
+                transform: translateX(-100%);
+            }
+        }
+        @keyframes slide2{
+            from{
+                transform: translateX(-100%);
+            }
+            to{
+                transform: translateX(0%);
+            }
+        }
+        .sec3-recycle{
+            margin-top: 100px;
+            margin-bottom: 48px;
+            animation: recycleAni 5s linear infinite;
+        }
+        @keyframes recycleAni {
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+        .sec3-recasetify {
+            text-align: center;
+            font-size: 120px;
+            font-weight: 700;
+            -webkit-text-stroke: 3px var(--gray1);
+            color: transparent;
+            transition: all 0.3s ease-in-out;
+        }
+        .sec3-recasetify.scroll{
+            color: var(--gray1);
+        }
+        .sec3-btn{
+            background-color: #21A264;
+            color: var(--white);
+            margin-top: 64px;
+            margin-bottom: 100px;
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .sec4{
+            height: 640px;
+            background-image: url(images/main/main-sec4.png);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .sec4-context{
+            height: 640px;
+            width: 50vw;
+            background-color: rgba(0, 0, 0, 0.7);
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: var(--white);
+            text-align: center;
+            transform: translateX(50vw);
+            transition: all 0.5s ease-in-out;
+        }
+        .sec4-context.scroll{
+            transform: translateX(0);
+        }
+        .sec4 p{
+            margin-top: 24px;
+            margin-bottom: 80px;
+        }
+        .sec4-btn{
+            color: var(--gray1);
+            background-color: var(--white);
+            margin-top: 0px;
+            transition: all 0.3s ease-in-out;
+        }
+        .sec4-btn:hover{
+            border: 2px solid var(--white);
+            color: var(--white);
+            background-color: var(--gray1);
+        }
+/* ---------------------------------------------------------------------------------------------------------------------- */
+        .footer{
+            height: 320px;
+            background-color: var(--gray1);
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 0 56px;
+            padding-top: 40px;
+            color: var(--white);
+        }
+        .footer-content{
+            display: flex;
+            /* justify-content: space-between; */
+            width: 100%;
+            align-items: flex-end;
+            margin-top: auto;
+            margin-bottom: 40px;
+        }
+        .footer-follow{
+            flex-grow: 1;
+        }
+        .footer-follow p{
+            margin-bottom: 12px;
+        }
+        .footer-sns{
+            display: flex;
+            flex-direction: row;
+            gap: 24px;
+        }
+        .footer-about{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            flex-grow: 1;
+        }
+        .footer-about a{
+            color: var(--white);
+            text-decoration: none;
+            line-height: 180%;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a class="logo" href="index.html"><img src="images/logo.png" alt="#" height="60px"></a>
+        <ul class="navbar">
+            <li><a href="#">기종</a></li>
+            <li><a href="#">시그니쳐</a></li>
+            <li><a href="colab.html">Co-Lab</a></li>
+            <li><a href="custom.html">커스텀</a></li>
+            <li><a href="#">액세서리</a></li>
+            <li><a href="#">트렌딩</a></li>
+        </ul>
+        <ul class="navlogo">
+            <li><a href="#"><img src="images/nav-lan.png" alt="#" width="24px"></a></li>
+            <li><a href="#"><img src="images/nav-per.png" alt="#" width="24px"></a></li>
+            <li><a href="#"><img src="images/nav-cart.png" alt="#" width="24px"></a></li>
+            <li><a href="#"><img src="images/nav-search.png" alt="#" width="24px"></a></li>
+        </ul>
+    </div>
+
+    <div class="header">
+        <div class="header-overlay"></div>
+        <div class="header-h2">
+            <h2 class="h2-1">Show</h2>
+            <h2 class="h2-2">Your</h2>
+            <h2 class="h2-3"><span>C</span>olors</h2>
+        </div>
+        <div class="header-circle1"></div>
+        <div class="header-circle2"></div>
+        <div class="header-line"></div>
+    </div>
+
+    <div class="sec1">
+        <h2>#CASTiFY Cares</h2>
+        <div class="sec1-items">
+            <a class="sec1-item sec1-itema" href="#"><img src="images/main/sec1-item1.png" alt="#" width="308px"></a>
+            <a class="sec1-item sec1-itemb" href="#"><img src="images/main/sec1-item2.png" alt="#" width="308px"></a>
+            <a class="sec1-item sec1-itema" href="#"><img src="images/main/sec1-item3.png" alt="#" width="308px"></a>
+            <a class="sec1-item sec1-itemb" href="#"><img src="images/main/sec1-item4.png" alt="#" width="308px"></a>
+        </div>
+        <a class="btn" href="#">MORE</a>
+    </div>
+
+    <div class="sec2">
+        <div class="sec2-context">
+            <h2>CASETiFY Artist</h2>
+            <p>
+                CASTiFY는 전 세계 다양한 아티스트와 콜라보하여 다양한 케이스를 제작합니다.
+                <br><br>
+                인기 아티스트 컬렉션을 선택하거나, 신인 아티스트 컬렉션에서 신예 아티스트 디자인을 만나보세요.
+            </p>
+            <a class="btn" href="#">MORE</a>
+        </div>
+        <div class="sec2-items">
+            <img class="sec2-item sec2-itema" src="images/main/sec2-item1.png" alt="#" height="308px">
+            <img class="sec2-item sec2-itemb" src="images/main/sec2-item2.png" alt="#" height="308px">
+            <img class="sec2-item sec2-itema" src="images/main/sec2-item3.png" alt="#" height="308px">
+            <img class="sec2-item sec2-itemb" src="images/main/sec2-item4.png" alt="#" height="308px">
+        </div>
+    </div>
+
+    <div class="sec3">
+        <div class="sec3-bar1">
+                <div class="slider">
+                    <p>Re/CLAIM</p>
+                    <p>Re/IMAGINE</p>
+                    <p>Re/CASETiFY</p>
+                    <p>Re/CLAIM</p>
+                    <p>Re/IMAGINE</p>
+                    <p>Re/CASETiFY</p>
+                    <p>Re/CLAIM</p>
+                    <p>Re/IMAGINE</p>
+                    <p>Re/CASETiFY</p>
+                    <p>Re/CLAIM</p>
+                    <p>Re/IMAGINE</p>
+                    <p>Re/CASETiFY</p>
+                </div>
+                <div class="slider">
+                    <p>Re/CLAIM</p>
+                    <p>Re/IMAGINE</p>
+                    <p>Re/CASETiFY</p>
+                    <p>Re/CLAIM</p>
+                    <p>Re/IMAGINE</p>
+                    <p>Re/CASETiFY</p>
+                    <p>Re/CLAIM</p>
+                    <p>Re/IMAGINE</p>
+                    <p>Re/CASETiFY</p>
+                    <p>Re/CLAIM</p>
+                    <p>Re/IMAGINE</p>
+                    <p>Re/CASETiFY</p>
+                </div>
+        </div>
+        <div class="sec3-content">
+            <img class="sec3-recycle" src="images/main/sec3-recycle.png" alt="#" width="60px">
+            <p class="sec3-recasetify">Re / CLAIM</p>
+            <p>케이스티파이는,지속가능성에 대한 사명을 갖고 끊임없는 노력과 개선을 보여줄 것을 약속합니다.</p>
+            <a class="btn sec3-btn" href="recasetify.html">MORE</a>
+        </div>
+        <div class="sec3-bar2">
+            <div class="slider2">
+                <p>Re/CLAIM</p>
+                <p>Re/IMAGINE</p>
+                <p>Re/CASETiFY</p>
+                <p>Re/CLAIM</p>
+                <p>Re/IMAGINE</p>
+                <p>Re/CASETiFY</p>
+                <p>Re/CLAIM</p>
+                <p>Re/IMAGINE</p>
+                <p>Re/CASETiFY</p>
+                <p>Re/CLAIM</p>
+                <p>Re/IMAGINE</p>
+                <p>Re/CASETiFY</p>
+            </div>
+            <div class="slider2">
+                <p>Re/CLAIM</p>
+                <p>Re/IMAGINE</p>
+                <p>Re/CASETiFY</p>
+                <p>Re/CLAIM</p>
+                <p>Re/IMAGINE</p>
+                <p>Re/CASETiFY</p>
+                <p>Re/CLAIM</p>
+                <p>Re/IMAGINE</p>
+                <p>Re/CASETiFY</p>
+                <p>Re/CLAIM</p>
+                <p>Re/IMAGINE</p>
+                <p>Re/CASETiFY</p>
+            </div>
+    </div>
+    </div>
+
+    <div class="sec4">
+        <div class="sec4-context">
+            <h2>나만의 개성있는 CASETiFY<br>케이스를 가지고 싶다면?</h2>
+            <p>직접 색상, 이미지, 문구 등을 고르고<br>CASETiFY에서 나만의 커스텀 케이스를 만들어보세요.</p>
+            <a class="btn sec4-btn" href="custom.html">GO</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="#"><img src="images/logo.png" alt="#" height="72px"></a>
+        <div class="footer-content">
+            <div class="footer-follow">
+                <p>Follow</p>
+                <div class="footer-sns">
+                    <a href="#"><img src="images/Facebook.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Twitter.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Instagram.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Tik Tok.png" alt="#" width="24px"></a>
+                    <a href="#"><img src="images/Pinterest.png" alt="#" width="24px"></a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>Copyright C 2023 CASETIFY  ㅣ  개인정보 처리방침  ㅣ  약관</p>
+            </div>
+            <div class="footer-about">
+                <a href="#">CASTiFY CLUB</a>
+                <a href="#">ABOUT CASETIFY</a>
+                <a href="#">문의하기</a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="main.js"></script>
+</body>
+</html>
